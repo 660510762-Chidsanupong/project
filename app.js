@@ -44,5 +44,29 @@ function switchPage(index) {
   });
 }
 
+// ===== THEME MANAGEMENT =====
+function initTheme() {
+  const saved = localStorage.getItem('hr-theme');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  if (current === 'light') {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('hr-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('hr-theme', 'light');
+  }
+}
+
+// Initialize theme before rendering
+initTheme();
+
 // Initialize with page 0
 switchPage(0);
