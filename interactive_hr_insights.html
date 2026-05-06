@@ -1,0 +1,385 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{display:flex;height:700px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-tertiary)}
+.sb{width:180px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column}
+.sb-logo{padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.sb-t{font-size:13px;font-weight:500;color:#fff}
+.sb-s{font-size:11px;color:#475569;margin-top:2px}
+.sb-nav{padding:10px 8px;flex:1}
+.nb{font-size:10px;color:#475569;padding:8px 8px 3px;letter-spacing:.06em}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;margin-bottom:1px;cursor:pointer;transition:background .15s}
+.ni:hover{background:rgba(255,255,255,0.06)}
+.ni.on{background:#2563EB}
+.ni-l{font-size:12px;color:#94A3B8}
+.ni.on .ni-l{color:#fff;font-weight:500}
+.ni-b{margin-left:auto;font-size:10px;background:#EF4444;color:#fff;padding:1px 5px;border-radius:8px}
+.sb-bot{padding:8px;border-top:0.5px solid rgba(255,255,255,0.08)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background-primary)}
+.topbar{height:46px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0}
+.tb-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.tb-r{margin-left:auto;display:flex;gap:6px}
+.tabs{display:flex;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0;padding:0 14px}
+.tab{font-size:12px;padding:9px 12px;color:var(--color-text-secondary);border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;user-select:none;white-space:nowrap}
+.tab:hover{color:var(--color-text-primary)}
+.tab.on{color:#2563EB;border-bottom-color:#2563EB;font-weight:500}
+.body{flex:1;overflow:auto;padding:12px 14px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px;margin-bottom:10px}
+.card-t{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.card-s{font-size:11px;color:var(--color-text-secondary);margin-bottom:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.shap-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.shap-rank{font-size:10px;color:var(--color-text-secondary);width:14px;text-align:right;flex-shrink:0}
+.shap-label{font-size:11px;color:var(--color-text-primary);width:128px;flex-shrink:0}
+.shap-track{flex:1;height:12px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.shap-fill{height:100%;border-radius:3px;transition:width .4s}
+.shap-val{font-size:11px;font-weight:500;width:34px;text-align:right}
+.rec-card{border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px;border:0.5px solid}
+.rec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.rec-title{font-size:12px;font-weight:500}
+.rec-tag{font-size:10px;padding:2px 7px;border-radius:10px}
+.rec-body{font-size:11px;line-height:1.55}
+.rec-evidence{font-size:10px;margin-top:5px;padding:4px 8px;border-radius:4px;background:rgba(255,255,255,0.5)}
+.wi-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px}
+.wi-q{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
+.wi-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.wi-label{font-size:11px;color:var(--color-text-secondary);width:80px;flex-shrink:0}
+.wi-bar{flex:1;height:8px;background:var(--color-background-primary);border-radius:4px;overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.wi-fill{height:100%;border-radius:4px;transition:width .5s}
+.wi-val{font-size:11px;font-weight:500;width:38px;text-align:right}
+.wi-note{font-size:10px;color:var(--color-text-secondary);margin-top:4px}
+.exec-section{margin-bottom:12px}
+.exec-section-title{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.exec-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.exec-kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 10px;text-align:center}
+.exec-kpi-v{font-size:18px;font-weight:500}
+.exec-kpi-l{font-size:10px;color:var(--color-text-secondary);margin-top:2px}
+.exec-finding{display:flex;gap:8px;margin-bottom:6px;padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
+.exec-num{font-size:16px;font-weight:500;min-width:28px}
+.exec-text{font-size:11px;color:var(--color-text-primary);line-height:1.5}
+.exec-action{padding:8px 12px;border-radius:var(--border-radius-md);margin-bottom:6px}
+.exec-action-title{font-size:11px;font-weight:500;margin-bottom:2px}
+.exec-action-body{font-size:11px;line-height:1.5}
+</style>
+
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-t">HR Analytics</div>
+      <div class="sb-logo-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <a href="interactive_overview_dashboard.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="7" width="3" height="6" rx="1" fill="#94A3B8"/><rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#94A3B8"/><rect x="10" y="1.5" width="3" height="11" rx="1" fill="#94A3B8"/></svg>
+          <span class="ni-l">Overview</span>
+        </div>
+      </a>
+      <a href="page2_employee_risk_table.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1"/><line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7"/><rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="10.5" width="4.5" height="1" rx=".5" fill="#94A3B8"/></svg>
+          <span class="ni-l">Employee Risk</span>
+          <span class="ni-b">287</span>
+        </div>
+      </a>
+      <a href="page3_prediction_tool.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1"/><path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">Prediction</span>
+        </div>
+      </a>
+      <div class="nb">INSIGHTS</div>
+      <a href="interactive_hr_insights.html" style="text-decoration:none">
+        <div class="ni on">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#fff" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">HR Insights</span>
+        </div>
+      </a>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title">HR Insights</div>
+      <div class="tb-r">
+        <button style="font-size:11px;padding:4px 10px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-primary);cursor:pointer">Download PDF</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab(0)">SHAP Summary</div>
+      <div class="tab" onclick="switchTab(1)">Recommendations</div>
+      <div class="tab" onclick="switchTab(2)">What-If Analysis</div>
+      <div class="tab" onclick="switchTab(3)">Executive Summary</div>
+    </div>
+    <div class="body" id="body"></div>
+  </div>
+</div>
+
+<script>
+let cur = 0;
+const tabs = document.querySelectorAll('.tab');
+function switchTab(i){ cur=i; tabs.forEach((t,idx)=>t.classList.toggle('on',idx===i)); render(); }
+
+function tab0(){
+  const features = [
+    {label:'OverTime',pos:88,neg:0,color:'#A32D2D'},
+    {label:'MonthlyIncome',pos:72,neg:0,color:'#A32D2D'},
+    {label:'Age',pos:58,neg:0,color:'#633806'},
+    {label:'YearsAtCompany',pos:50,neg:0,color:'#633806'},
+    {label:'JobLevel',pos:44,neg:0,color:'#633806'},
+    {label:'MaritalStatus',pos:36,neg:0,color:'#633806'},
+    {label:'BusinessTravel',pos:30,neg:0,color:'#633806'},
+    {label:'JobSatisfaction',pos:24,neg:0,color:'#633806'},
+    {label:'StockOptionLevel',pos:0,neg:40,color:'#27500A'},
+    {label:'TrainingTimesLastYear',pos:0,neg:28,color:'#27500A'},
+  ];
+  return `<div class="row2">
+    <div class="card">
+      <div class="card-t">SHAP Summary Plot</div>
+      <div class="card-s">Feature ที่ส่งผลต่อการลาออกมากที่สุด — ภาพรวมทั้งองค์กร 10,000 คน</div>
+      ${features.map((f,i)=>{
+        const isPos = f.pos > 0;
+        const pct = isPos ? f.pos : f.neg;
+        return `<div class="shap-row">
+          <div class="shap-rank">${i+1}</div>
+          <div class="shap-label">${f.label}</div>
+          <div class="shap-track"><div class="shap-fill" style="width:${pct}%;background:${f.color}"></div></div>
+          <div class="shap-val" style="color:${f.color}">${pct}%</div>
+        </div>`;
+      }).join('')}
+      <div style="display:flex;gap:12px;margin-top:8px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary)">
+        <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--color-text-secondary)"><div style="width:10px;height:10px;border-radius:2px;background:#A32D2D"></div>เพิ่มความเสี่ยง</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--color-text-secondary)"><div style="width:10px;height:10px;border-radius:2px;background:#27500A"></div>ลดความเสี่ยง</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-t">SHAP Dependency Plot — OverTime</div>
+      <div class="card-s">OverTime เป็น Feature ที่สำคัญที่สุด ส่งผลต่อ Risk Score อย่างไร?</div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:11px;color:var(--color-text-secondary)">ไม่ทำ OT (No)</span>
+          <span style="font-size:14px;font-weight:500;color:#27500A">Attrition 11.7%</span>
+        </div>
+        <div style="height:8px;background:var(--color-background-primary);border-radius:4px;overflow:hidden;border:0.5px solid var(--color-border-tertiary)">
+          <div style="width:39%;height:100%;background:#27500A;border-radius:4px"></div>
+        </div>
+      </div>
+      <div style="background:#FCEBEB;border-radius:var(--border-radius-md);padding:10px;margin-bottom:8px;border:0.5px solid #F7C1C1">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:11px;color:#A32D2D">ทำ OT (Yes)</span>
+          <span style="font-size:14px;font-weight:500;color:#A32D2D">Attrition 22.8%</span>
+        </div>
+        <div style="height:8px;background:rgba(255,255,255,0.6);border-radius:4px;overflow:hidden">
+          <div style="width:76%;height:100%;background:#A32D2D;border-radius:4px"></div>
+        </div>
+      </div>
+      <div style="padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:11px;color:var(--color-text-secondary)">
+        OT เพิ่ม SHAP Value เฉลี่ย +22.4% ต่อพนักงาน 1 คน และส่งผลทุกกลุ่มโดยไม่มีข้อยกเว้น
+      </div>
+      <div style="margin-top:10px">
+        <div class="card-t" style="margin-bottom:6px">SHAP Interaction — OT × Income</div>
+        ${[['OT + Income < 3K','51.9%','#A32D2D','#FCEBEB'],['OT + Income 3K-6K','21.3%','#633806','#FAEEDA'],['OT + Income > 6K','15.2%','#888','var(--color-background-secondary)'],['ไม่ OT (ทุกระดับ)','11.7%','#27500A','#EAF3DE']].map(([l,v,c,bg])=>`
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+          <span style="font-size:11px;color:var(--color-text-secondary);width:130px;flex-shrink:0">${l}</span>
+          <div style="flex:1;height:7px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden">
+            <div style="width:${parseFloat(v)/55*100}%;height:100%;background:${c};border-radius:3px"></div>
+          </div>
+          <span style="font-size:11px;font-weight:500;color:${c};width:34px;text-align:right">${v}</span>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function tab1(){
+  const recs = [
+    {
+      priority:'เร่งด่วน',title:'ลด / จำกัด OverTime',
+      color:'#791F1F',bg:'#FCEBEB',border:'#F7C1C1',tagBg:'#F7C1C1',
+      body:'OT เป็นปัจจัยที่ส่งผลมากที่สุดในโมเดล (SHAP Value สูงสุด 88%) พนักงานที่ทำ OT ลาออก 22.8% เทียบกับ 11.7% เกือบ 2 เท่า มีพนักงานทำ OT อยู่ 1,500 คน',
+      action:'จำกัด OT ไม่เกิน 10 ชั่วโมง/สัปดาห์ หรือให้ค่าตอบแทน OT เพิ่ม 1.5 เท่า',
+      impact:'ลด Attrition Rate ได้ประมาณ 5.96% หรือ ~596 คน/ปี',target:'1,500 คน'
+    },
+    {
+      priority:'เร่งด่วน',title:'ปรับเงินเดือนกลุ่ม < 3,000',
+      color:'#791F1F',bg:'#FCEBEB',border:'#F7C1C1',tagBg:'#F7C1C1',
+      body:'กลุ่ม OT + เงินเดือน < 3,000 มีอัตราลาออก 51.9% สูงที่สุดในชุดข้อมูล MonthlyIncome เป็น Feature สำคัญอันดับ 2 ใน SHAP (72%)',
+      action:'ทบทวน Salary Benchmark กับตลาด และปรับเงินเดือนให้ไม่ต่ำกว่า 5,000 สำหรับกลุ่มนี้',
+      impact:'ลด Risk Score กลุ่มนี้จาก 51.9% เหลือ ~15%',target:'133 คน'
+    },
+    {
+      priority:'กลาง',title:'วาง Career Path ที่ชัดเจน',
+      color:'#412402',bg:'#FAEEDA',border:'#FAC775',tagBg:'#FAC775',
+      body:'พนักงานที่ไม่ได้รับการ Promote นาน 6-7 ปีมีอัตราลาออกพุ่งถึง 19-20% YearsSinceLastPromotion มีผลต่อ SHAP อย่างมีนัยสำคัญ',
+      action:'สร้าง IDP (Individual Development Plan) ทบทวนการเลื่อนตำแหน่งทุก 2 ปี และ Job Rotation ทุก 3-5 ปี',
+      impact:'ลด Attrition กลุ่มนี้จาก 19% เหลือประมาณ 13%',target:'65 คน'
+    },
+    {
+      priority:'กลาง',title:'เพิ่ม Stock Option กลุ่ม Level 1-2',
+      color:'#412402',bg:'#FAEEDA',border:'#FAC775',tagBg:'#FAC775',
+      body:'StockOptionLevel = 0 มีอัตราลาออก 20% สูงกว่ากลุ่มที่มี Stock Option ที่ 15-16% SHAP ระบุว่า Stock Option ช่วยลด Risk Score ได้จริง (SHAP Value -40%)',
+      action:'ให้ Stock Option Level 1 กับพนักงาน Level 1-2 ที่มี Performance ดี เพื่อสร้าง Golden Handcuffs',
+      impact:'ลด Attrition ได้ ~4-5% สำหรับกลุ่มเป้าหมาย',target:'~800 คน'
+    },
+    {
+      priority:'ระยะยาว',title:'เพิ่มความถี่ Training',
+      color:'#173404',bg:'#EAF3DE',border:'#C0DD97',tagBg:'#C0DD97',
+      body:'พนักงานที่ได้ Training 5 ครั้ง/ปีลาออกแค่ 12.9% vs ไม่ได้ Training เลย 15.4% Training มีผลเชิงบวกต่อ Engagement และ Loyalty',
+      action:'วาง Training Calendar ให้ครบทุกคนอย่างน้อย 4-5 ครั้ง/ปี เน้น Job-relevant Skills',
+      impact:'ลด Attrition ได้ ~2.5% ผ่าน Engagement ที่สูงขึ้น',target:'ทุกพนักงาน'
+    },
+    {
+      priority:'ระยะยาว',title:'โปรแกรม Onboarding สำหรับพนักงานใหม่',
+      color:'#173404',bg:'#EAF3DE',border:'#C0DD97',tagBg:'#C0DD97',
+      body:'YearsAtCompany = 0-1 มีอัตราลาออกสูงสุด (วิกฤตปีแรก) พนักงานที่รอดพ้น 5 ปีแรกมีแนวโน้มอยู่ต่อนานขึ้น',
+      action:'สร้าง Onboarding Program 6 เดือน มี Buddy System และ Check-in ทุก 3 เดือนในปีแรก',
+      impact:'ลด Attrition ปีแรกจาก ~18% เหลือประมาณ 12%',target:'พนักงานใหม่ทุกคน'
+    },
+  ];
+  return `<div style="margin-bottom:10px;font-size:11px;color:var(--color-text-secondary)">HR Recommendations 6 ข้อ — เรียงตามความเร่งด่วน มี Data Evidence รองรับทุกข้อ</div>
+  ${recs.map(r=>`
+  <div class="rec-card" style="background:${r.bg};border-color:${r.border}">
+    <div class="rec-top">
+      <div class="rec-title" style="color:${r.color}">${r.title}</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span class="rec-tag" style="background:${r.tagBg};color:${r.color}">${r.priority}</span>
+        <span class="rec-tag" style="background:rgba(255,255,255,0.5);color:${r.color}">${r.target}</span>
+      </div>
+    </div>
+    <div class="rec-body" style="color:${r.color};opacity:0.85">${r.body}</div>
+    <div class="rec-evidence" style="color:${r.color}">
+      <span style="font-weight:500">Action:</span> ${r.action}<br>
+      <span style="font-weight:500">ผลลัพธ์ที่คาดหวัง:</span> ${r.impact}
+    </div>
+  </div>`).join('')}`;
+}
+
+function tab2(){
+  const scenarios = [
+    {
+      q:'ถ้าหยุด OT ทั้งองค์กร',
+      note:'พนักงาน 1,500 คนหยุดทำ OT ทันที',
+      before:{label:'ปัจจุบัน',rate:14.76,color:'#A32D2D'},
+      after:{label:'หลังปรับ (คาดการณ์)',rate:8.8,color:'#27500A'},
+      max:15,saving:'~596 คน/ปี',cost:'ต้องจ้างพนักงานเพิ่มหรือลดปริมาณงาน'
+    },
+    {
+      q:'ถ้าขึ้นเงินเดือนกลุ่ม < 3K ให้ถึง 5K',
+      note:'ลงทุนกับ 133 คน เพิ่มเฉลี่ยคนละ 2,500 บาท/เดือน',
+      before:{label:'ปัจจุบัน (กลุ่มนี้)',rate:51.9,color:'#A32D2D'},
+      after:{label:'หลังปรับ (คาดการณ์)',rate:15.0,color:'#27500A'},
+      max:55,saving:'~49 คน/ปี จากกลุ่มนี้',cost:'ต้นทุนเพิ่ม ~399,000 บาท/เดือน'
+    },
+    {
+      q:'ถ้าเพิ่ม Training เป็น 5 ครั้ง/ปี',
+      note:'ทุกพนักงาน 10,000 คนได้รับ Training เพิ่มขึ้น',
+      before:{label:'ปัจจุบัน',rate:15.4,color:'#633806'},
+      after:{label:'หลังปรับ (คาดการณ์)',rate:12.9,color:'#27500A'},
+      max:16,saving:'~250 คน/ปี',cost:'ค่า Training + เวลาพนักงาน'
+    },
+    {
+      q:'ถ้าทำทั้ง 3 นโยบายพร้อมกัน',
+      note:'ลด OT + ขึ้นเงินเดือน + เพิ่ม Training',
+      before:{label:'ปัจจุบัน',rate:14.76,color:'#A32D2D'},
+      after:{label:'หลังปรับ (คาดการณ์)',rate:6.5,color:'#185FA5'},
+      max:15,saving:'~825 คน/ปี',cost:'ต้องลงทุนด้านนโยบายระยะกลาง-ยาว'
+    },
+  ];
+  return `<div style="margin-bottom:10px;font-size:11px;color:var(--color-text-secondary)">ทดลองปรับนโยบาย — ดูว่า Attrition Rate จะเปลี่ยนไปเท่าไหร่ถ้าองค์กรปรับแต่ละ Scenario</div>
+  ${scenarios.map(s=>`
+  <div class="wi-box">
+    <div class="wi-q">${s.q}</div>
+    <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:8px">${s.note}</div>
+    <div class="wi-row">
+      <div class="wi-label">${s.before.label}</div>
+      <div class="wi-bar"><div class="wi-fill" style="width:${s.before.rate/s.max*100}%;background:${s.before.color}"></div></div>
+      <div class="wi-val" style="color:${s.before.color}">${s.before.rate.toFixed(2)}%</div>
+    </div>
+    <div class="wi-row">
+      <div class="wi-label">${s.after.label}</div>
+      <div class="wi-bar"><div class="wi-fill" style="width:${s.after.rate/s.max*100}%;background:${s.after.color}"></div></div>
+      <div class="wi-val" style="color:${s.after.color}">${s.after.rate.toFixed(1)}%</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:6px">
+      <div style="flex:1;font-size:10px;color:#27500A;padding:4px 8px;background:#EAF3DE;border-radius:4px">ประหยัดได้: ${s.saving}</div>
+      <div style="flex:1;font-size:10px;color:var(--color-text-secondary);padding:4px 8px;background:var(--color-background-primary);border-radius:4px;border:0.5px solid var(--color-border-tertiary)">ต้นทุน: ${s.cost}</div>
+    </div>
+  </div>`).join('')}`;
+}
+
+function tab3(){
+  return `<div style="max-width:580px;margin:0 auto">
+    <div style="text-align:center;padding:12px 0 16px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:14px">
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-primary)">Executive Summary</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:3px">HR Analytics: Employee Attrition Prediction — พ.ค. 2025</div>
+    </div>
+
+    <div class="exec-section">
+      <div class="exec-section-title">สถานการณ์ปัจจุบัน</div>
+      <div class="exec-kpis">
+        <div class="exec-kpi"><div class="exec-kpi-v" style="color:#A32D2D">14.76%</div><div class="exec-kpi-l">Attrition Rate รวม</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-v" style="color:#633806">287 คน</div><div class="exec-kpi-l">กลุ่มเสี่ยงสูง (>70%)</div></div>
+        <div class="exec-kpi"><div class="exec-kpi-v" style="color:#A32D2D">133 คน</div><div class="exec-kpi-l">เสี่ยงสูงสุด (OT+เงินเดือนต่ำ)</div></div>
+      </div>
+    </div>
+
+    <div class="exec-section">
+      <div class="exec-section-title">สาเหตุหลักที่ค้นพบ</div>
+      ${[
+        ['#A32D2D','#FCEBEB','OverTime คือปัจจัยเดียวที่ทำให้ทุกกลุ่มเสี่ยงขึ้น 2 เท่า — พนักงาน 1,500 คนอยู่ในความเสี่ยงนี้'],
+        ['#633806','#FAEEDA','เงินเดือนต่ำกว่า 3,000 บาทร่วมกับ OT ทำให้อัตราลาออกพุ่งสูงถึง 51.9% — มีพนักงาน 133 คนในกลุ่มนี้'],
+        ['#633806','#FAEEDA','พนักงานที่ไม่ได้รับการ Promote นาน 6-7 ปี มีอัตราลาออก 19-20% — สัญญาณความอิ่มตัวใน Career'],
+        ['#173404','#EAF3DE','Training และ Stock Option ช่วยรักษาพนักงานได้จริง แต่ยังใช้ไม่เต็มศักยภาพ'],
+      ].map(([c,bg,txt])=>`
+      <div class="exec-finding" style="background:${bg};border-color:${c}20">
+        <div class="exec-num" style="color:${c}">›</div>
+        <div class="exec-text" style="color:${c}">${txt}</div>
+      </div>`).join('')}
+    </div>
+
+    <div class="exec-section">
+      <div class="exec-section-title">ข้อเสนอแนะเชิงนโยบาย</div>
+      ${[
+        ['#A32D2D','#FCEBEB','เร่งด่วน','จำกัด OT และปรับโครงสร้างเงินเดือนกลุ่มเสี่ยง','ลด Attrition Rate ได้ ~6% หรือประมาณ 600 คน/ปี'],
+        ['#633806','#FAEEDA','ระยะกลาง','วาง Career Path ชัดเจนและเพิ่ม Stock Option','ลด Attrition กลุ่ม Level 1-2 ได้ ~4-5%'],
+        ['#173404','#EAF3DE','ระยะยาว','เพิ่มความถี่ Training และโปรแกรม Onboarding','สร้าง Engagement ระยะยาว ลด Attrition ~2-3%'],
+      ].map(([c,bg,tag,title,impact])=>`
+      <div class="exec-action" style="background:${bg};margin-bottom:6px;border-radius:var(--border-radius-md)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+          <span style="font-size:10px;padding:1px 6px;border-radius:8px;background:rgba(255,255,255,0.5);color:${c}">${tag}</span>
+          <div class="exec-action-title" style="color:${c}">${title}</div>
+        </div>
+        <div class="exec-action-body" style="color:${c};opacity:0.85">${impact}</div>
+      </div>`).join('')}
+    </div>
+
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:12px;border:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px">ถ้าดำเนินการครบทั้ง 3 นโยบาย</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+        <div style="text-align:center"><div style="font-size:18px;font-weight:500;color:#A32D2D">14.76%</div><div style="font-size:10px;color:var(--color-text-secondary)">ปัจจุบัน</div></div>
+        <div style="flex:1;height:1px;background:var(--color-border-tertiary);position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary);padding:0 6px">→</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:500;color:#27500A">~6.5%</div><div style="font-size:10px;color:var(--color-text-secondary)">คาดการณ์</div></div>
+        <div style="text-align:center;padding:6px 10px;background:#EAF3DE;border-radius:var(--border-radius-md)"><div style="font-size:14px;font-weight:500;color:#173404">~825 คน</div><div style="font-size:10px;color:#27500A">รักษาได้ต่อปี</div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const body = document.getElementById('body');
+  if(cur===0) body.innerHTML=tab0();
+  else if(cur===1) body.innerHTML=tab1();
+  else if(cur===2) body.innerHTML=tab2();
+  else body.innerHTML=tab3();
+}
+render();
+</script>
+
+

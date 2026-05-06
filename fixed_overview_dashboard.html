@@ -1,0 +1,294 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{display:flex;height:680px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.sb{width:180px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column}
+.sb-logo{padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.sb-t{font-size:13px;font-weight:500;color:#fff}
+.sb-s{font-size:11px;color:#475569;margin-top:2px}
+.sb-nav{padding:8px;flex:1}
+.nb{font-size:10px;color:#475569;padding:8px 8px 3px;letter-spacing:.06em}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;margin-bottom:1px;cursor:pointer;transition:background .15s}
+.ni:hover{background:rgba(255,255,255,0.06)}
+.ni.on{background:#2563EB}
+.ni svg{width:14px;height:14px;flex-shrink:0}
+.ni-l{font-size:12px;color:#94A3B8}
+.ni.on .ni-l{color:#fff;font-weight:500}
+.ni-b{margin-left:auto;font-size:10px;background:#EF4444;color:#fff;padding:1px 5px;border-radius:8px}
+.sb-bot{padding:8px;border-top:0.5px solid rgba(255,255,255,0.08)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background-primary)}
+.topbar{height:46px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0}
+.tb-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.tb-r{margin-left:auto;display:flex;gap:6px;align-items:center}
+.sel{font-size:11px;padding:4px 7px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)}
+.btn-e{font-size:11px;padding:4px 10px;border-radius:6px;background:#2563EB;color:#fff;border:none;cursor:pointer}
+.tabs{display:flex;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0;padding:0 14px}
+.tab{font-size:12px;padding:9px 12px;color:var(--color-text-secondary);border-bottom:2px solid transparent;cursor:pointer;transition:all .15s;user-select:none}
+.tab:hover{color:var(--color-text-primary)}
+.tab.on{color:#2563EB;border-bottom-color:#2563EB;font-weight:500}
+.body{flex:1;overflow:auto;padding:12px 14px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.kpi-l{font-size:10px;color:var(--color-text-secondary);margin-bottom:3px}
+.kpi-v{font-size:20px;font-weight:500}
+.kpi-s{font-size:10px;margin-top:2px;color:var(--color-text-secondary)}
+.kpi-s.danger{color:#A32D2D}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px}
+.card-t{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
+.bar-r{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.bar-lb{font-size:10px;color:var(--color-text-secondary);width:80px;flex-shrink:0;text-align:right}
+.bar-tr{flex:1;height:7px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.bar-f{height:100%;border-radius:3px}
+.bar-vl{font-size:10px;width:32px;text-align:right}
+.tbl{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
+.tbl th{text-align:left;padding:4px 8px;font-size:10px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.tbl td{padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:500}
+.bh{background:#FCEBEB;color:#791F1F}.bm{background:#FAEEDA;color:#412402}.bl{background:#EAF3DE;color:#173404}
+.risk-bar{display:flex;align-items:center;gap:5px}
+.risk-tr{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.risk-f{height:100%;border-radius:3px}
+.dept-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px;margin-bottom:8px}
+.dept-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.dept-title{font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.dept-rate{font-size:14px;font-weight:500}
+.dept-bar-wrap{height:8px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.dept-bar{height:100%;border-radius:4px}
+.dept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.dept-stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:6px 8px;text-align:center}
+.dept-stat-v{font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.dept-stat-l{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+.legend{display:flex;gap:12px;padding:8px 14px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);flex-shrink:0}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--color-text-secondary)}
+.leg-d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+</style>
+
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-t">HR Analytics</div>
+      <div class="sb-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <div class="ni on">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="7" width="3" height="6" rx="1" fill="#fff"/><rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#fff"/><rect x="10" y="1.5" width="3" height="11" rx="1" fill="#fff"/></svg>
+        <span class="ni-l">Overview</span>
+      </div>
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1"/><line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7"/><rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8"/></svg>
+        <span class="ni-l">Employee Risk</span>
+        <span class="ni-b">287</span>
+      </div>
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1"/><path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">Prediction</span>
+      </div>
+      <div class="nb">INSIGHTS</div>
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#94A3B8" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">HR Insights</span>
+      </div>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title">Overview Dashboard</div>
+      <div class="tb-r">
+        <select class="sel" id="dept-filter">
+          <option value="all">ทุก Department</option>
+          <option value="sales">Sales</option>
+          <option value="rd">R&D</option>
+          <option value="hr">HR</option>
+        </select>
+        <button class="btn-e">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab(0)">ภาพรวม</div>
+      <div class="tab" onclick="switchTab(1)">กลุ่มเสี่ยง</div>
+      <div class="tab" onclick="switchTab(2)">Department</div>
+    </div>
+
+    <div class="body" id="body"></div>
+
+    <div class="legend">
+      <div class="leg-i"><div class="leg-d" style="background:#A32D2D"></div>High Risk (&gt;70%)</div>
+      <div class="leg-i"><div class="leg-d" style="background:#EF9F27"></div>Medium (40-70%)</div>
+      <div class="leg-i"><div class="leg-d" style="background:#27500A"></div>Low (&lt;40%)</div>
+      <div style="margin-left:auto;font-size:10px;color:var(--color-text-tertiary)">Dataset: 10,000 พนักงาน</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cur = 0;
+const tabs = document.querySelectorAll('.tab');
+function switchTab(i){ cur=i; tabs.forEach((t,idx)=>t.classList.toggle('on',idx===i)); render(); }
+
+function kpis(){
+  return `<div class="kpis">
+    <div class="kpi">
+      <div class="kpi-l">Attrition Rate</div>
+      <div class="kpi-v" style="color:#A32D2D">14.76%</div>
+      <div class="kpi-s">1,476 คน จาก 10,000</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">High Risk</div>
+      <div class="kpi-v" style="color:#633806">287 คน</div>
+      <div class="kpi-s">Risk Score &gt; 70%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">กลุ่มเสี่ยงสูงสุด</div>
+      <div class="kpi-v" style="color:#A32D2D">133 คน</div>
+      <div class="kpi-s">OT + เงินเดือน &lt;3K</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Class Imbalance</div>
+      <div class="kpi-v" style="color:var(--color-text-primary)">85:15</div>
+      <div class="kpi-s">ไม่ลาออก vs ลาออก</div>
+    </div>
+  </div>`;
+}
+
+function tab0(){
+  return kpis() + `
+  <div class="row2">
+    <div class="card">
+      <div class="card-t">Attrition Rate แยก Job Role</div>
+      ${[['Sales Rep',79,'#A32D2D','23.5%'],['HR',68,'#A32D2D','20.4%'],['Lab Tech',63,'#633806','18.8%'],['Research Sci',56,'#633806','16.8%'],['Sales Exec',53,'#633806','15.9%'],['Manager',40,'#27500A','12.1%'],['Mfg Director',37,'#27500A','11.1%']].map(([l,p,c,v])=>`
+      <div class="bar-r">
+        <div class="bar-lb">${l}</div>
+        <div class="bar-tr"><div class="bar-f" style="width:${p}%;background:${c}"></div></div>
+        <div class="bar-vl" style="color:${c}">${v}</div>
+      </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-t">Top 5 พนักงานเสี่ยงสูง</div>
+      <table class="tbl">
+        <thead><tr><th style="width:32%">ชื่อ</th><th style="width:22%">แผนก</th><th style="width:28%">Risk Score</th><th style="width:18%">ระดับ</th></tr></thead>
+        <tbody>
+          ${[['พนักงาน A','Sales',91,'#A32D2D','bh'],['พนักงาน B','R&D',84,'#A32D2D','bh'],['พนักงาน C','HR',79,'#A32D2D','bh'],['พนักงาน D','R&D',65,'#633806','bm'],['พนักงาน E','Sales',61,'#633806','bm']].map(([n,d,s,c,b])=>`
+          <tr>
+            <td style="font-weight:500">${n}</td><td>${d}</td>
+            <td><div class="risk-bar"><div class="risk-tr"><div class="risk-f" style="width:${s}%;background:${c}"></div></div><span style="font-size:10px;font-weight:500;color:${c};min-width:24px">${s}%</span></div></td>
+            <td><span class="badge ${b}">${b==='bh'?'High':'Medium'}</span></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t">Attrition Rate แยก Department × OverTime</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px">
+      ${[['Sales','12.0%','24.0%'],['R&D','10.6%','22.2%'],['HR','12.7%','22.2%']].map(([dept,no,ot])=>`
+      <div style="text-align:center">
+        <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:6px">${dept}</div>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <div style="text-align:center">
+            <div style="width:28px;height:44px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:3px;display:flex;align-items:flex-end;overflow:hidden;margin:0 auto">
+              <div style="width:100%;height:${parseFloat(no)/28*100}%;background:#27500A"></div>
+            </div>
+            <div style="font-size:9px;color:var(--color-text-secondary);margin-top:2px">ไม่ OT</div>
+            <div style="font-size:10px;font-weight:500;color:#27500A">${no}</div>
+          </div>
+          <div style="text-align:center">
+            <div style="width:28px;height:44px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:3px;display:flex;align-items:flex-end;overflow:hidden;margin:0 auto">
+              <div style="width:100%;height:${parseFloat(ot)/28*100}%;background:#A32D2D"></div>
+            </div>
+            <div style="font-size:9px;color:var(--color-text-secondary);margin-top:2px">OT</div>
+            <div style="font-size:10px;font-weight:500;color:#A32D2D">${ot}</div>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function tab1(){
+  const groups = [
+    {title:'OT + เงินเดือน < 3,000',count:133,pct:51.9,color:'#791F1F',bg:'#FCEBEB',border:'#F7C1C1',tags:['Sales Rep 48 คน','Lab Tech 35 คน','Research Sci 28 คน','HR 22 คน'],action:'ทบทวนเงินเดือนและนโยบาย OT ทันที'},
+    {title:'อายุ ≤ 25 ปี + ทำ OT',count:89,pct:31.2,color:'#412402',bg:'#FAEEDA',border:'#FAC775',tags:['Sales Rep 32 คน','Lab Tech 27 คน','Research Sci 18 คน','HR 12 คน'],action:'Career Path และ Mentoring สำหรับกลุ่มเริ่มต้น'},
+    {title:'ไม่ได้โปรโมท 6-7 ปี',count:65,pct:19.5,color:'#412402',bg:'#FAEEDA',border:'#FAC775',tags:['Manager 18 คน','Sales Exec 21 คน','Research Sci 15 คน','Lab Tech 11 คน'],action:'ทบทวน IDP และ Promotion Cycle'},
+    {title:'Single + OT + Level 1',count:42,pct:31.4,color:'#791F1F',bg:'#FCEBEB',border:'#F7C1C1',tags:['Sales Rep 19 คน','Lab Tech 14 คน','Research Sci 9 คน'],action:'กลุ่มเสี่ยงสูงสุด Combo 3 ปัจจัย'},
+  ];
+  return kpis() + `
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px">พนักงาน 287 คน แบ่งตามปัจจัยเสี่ยงหลัก — เรียงจากเร่งด่วนมากสุด</div>
+  ${groups.map(g=>`
+  <div class="dept-card" style="background:${g.bg};border-color:${g.border}">
+    <div class="dept-header">
+      <div class="dept-title" style="color:${g.color}">${g.title}</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span style="font-size:11px;color:${g.color};font-weight:500">${g.pct}%</span>
+        <span class="badge" style="background:rgba(255,255,255,0.5);color:${g.color};border:0.5px solid ${g.border}">${g.count} คน</span>
+      </div>
+    </div>
+    <div class="dept-bar-wrap"><div class="dept-bar" style="width:${g.pct/60*100}%;background:${g.color}"></div></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+      ${g.tags.map(t=>`<span style="font-size:10px;padding:2px 7px;border-radius:10px;background:rgba(255,255,255,0.6);color:${g.color};border:0.5px solid ${g.border}">${t}</span>`).join('')}
+    </div>
+    <div style="font-size:11px;color:${g.color};padding:5px 8px;background:rgba(255,255,255,0.5);border-radius:4px">
+      HR Action: ${g.action}
+    </div>
+  </div>`).join('')}`;
+}
+
+function tab2(){
+  const depts = [
+    {name:'Sales',total:3200,attrition:16.4,high:124,ot:38.5,avgIncome:5200,topRole:'Sales Rep (23.5%)',color:'#A32D2D',bg:'#FCEBEB',border:'#F7C1C1'},
+    {name:'R&D',total:5800,attrition:13.2,high:128,ot:28.1,avgIncome:7400,topRole:'Lab Tech (18.8%)',color:'#412402',bg:'#FAEEDA',border:'#FAC775'},
+    {name:'HR',total:1000,attrition:15.8,high:35,ot:31.2,avgIncome:4800,topRole:'HR Specialist (20.4%)',color:'#412402',bg:'#FAEEDA',border:'#FAC775'},
+  ];
+  return kpis() + `
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:10px">เปรียบเทียบ 3 Department — Attrition Rate, Risk และปัจจัยสำคัญ</div>
+  ${depts.map(d=>`
+  <div class="dept-card">
+    <div class="dept-header">
+      <div class="dept-title">${d.name}</div>
+      <div class="dept-rate" style="color:${d.color}">${d.attrition.toFixed(1)}% Attrition Rate</div>
+    </div>
+    <div class="dept-bar-wrap">
+      <div class="dept-bar" style="width:${d.attrition/25*100}%;background:${d.color}"></div>
+    </div>
+    <div class="dept-grid">
+      <div class="dept-stat">
+        <div class="dept-stat-v">${d.total.toLocaleString()} คน</div>
+        <div class="dept-stat-l">จำนวนพนักงาน</div>
+      </div>
+      <div class="dept-stat">
+        <div class="dept-stat-v" style="color:#791F1F">${d.high} คน</div>
+        <div class="dept-stat-l">High Risk</div>
+      </div>
+      <div class="dept-stat">
+        <div class="dept-stat-v" style="color:#412402">${d.ot.toFixed(1)}%</div>
+        <div class="dept-stat-l">ทำ OT</div>
+      </div>
+      <div class="dept-stat">
+        <div class="dept-stat-v">${d.avgIncome.toLocaleString()}</div>
+        <div class="dept-stat-l">เงินเดือนเฉลี่ย</div>
+      </div>
+      <div class="dept-stat" style="grid-column:span 2">
+        <div class="dept-stat-v" style="font-size:11px">${d.topRole}</div>
+        <div class="dept-stat-l">Job Role เสี่ยงสูงสุด</div>
+      </div>
+    </div>
+  </div>`).join('')}`;
+}
+
+function render(){
+  const body = document.getElementById('body');
+  if(cur===0) body.innerHTML=tab0();
+  else if(cur===1) body.innerHTML=tab1();
+  else body.innerHTML=tab2();
+}
+render();
+</script>

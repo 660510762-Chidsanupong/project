@@ -1,0 +1,176 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{display:flex;height:700px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-tertiary)}
+.sb{width:180px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column;padding:0}
+.sb-logo{padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.sb-logo-t{font-size:13px;font-weight:500;color:#fff}
+.sb-logo-s{font-size:11px;color:#475569;margin-top:2px}
+.sb-nav{padding:10px 8px;flex:1}
+.nb{font-size:10px;color:#475569;padding:8px 8px 3px;letter-spacing:.06em}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;margin-bottom:1px;cursor:pointer;transition:background .15s}
+.ni:hover{background:rgba(255,255,255,0.06)}
+.ni.on{background:#2563EB}
+.ni svg{width:14px;height:14px;flex-shrink:0}
+.ni-l{font-size:12px;color:#94A3B8}
+.ni.on .ni-l{color:#fff;font-weight:500}
+.ni-b{margin-left:auto;font-size:10px;background:#EF4444;color:#fff;padding:1px 5px;border-radius:8px}
+.sb-bot{padding:10px 8px;border-top:0.5px solid rgba(255,255,255,0.08)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background-primary)}
+.topbar{height:48px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+.tb-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.tb-r{margin-left:auto;display:flex;gap:8px}
+.filters{display:flex;align-items:center;gap:8px;padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0;flex-wrap:wrap}
+.filters input{font-size:11px;padding:5px 10px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);width:180px}
+.filters select{font-size:11px;padding:5px 8px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)}
+.filters label{font-size:11px;color:var(--color-text-secondary)}
+.tbl-wrap{flex:1;overflow:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.tbl th{text-align:left;padding:8px 12px;font-size:10px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);position:sticky;top:0}
+.tbl td{padding:7px 12px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tbl tr:hover td{background:var(--color-background-secondary)}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:8px;font-weight:500}
+.bh{background:#FCEBEB;color:#791F1F}
+.bm{background:#FAEEDA;color:#412402}
+.bl{background:#EAF3DE;color:#173404}
+.risk-bar{display:flex;align-items:center;gap:6px}
+.risk-track{flex:1;height:5px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.risk-fill{height:100%;border-radius:3px}
+.btn-view{font-size:10px;padding:3px 8px;border-radius:4px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+.tfoot{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);flex-shrink:0}
+.tfoot-txt{font-size:11px;color:var(--color-text-secondary)}
+.page-btns{display:flex;gap:4px}
+.pg{font-size:11px;padding:3px 8px;border-radius:4px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer}
+.pg.on{background:#2563EB;color:#fff;border-color:#2563EB}
+.sb-nav a{display:block;color:inherit;text-decoration:none}
+</style>
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-t">HR Analytics</div>
+      <div class="sb-logo-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <a href="interactive_overview_dashboard.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="7" width="3" height="6" rx="1" fill="#94A3B8"/><rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#94A3B8"/><rect x="10" y="1.5" width="3" height="11" rx="1" fill="#94A3B8"/></svg>
+          <span class="ni-l">Overview</span>
+        </div>
+      </a>
+      <a href="page2_employee_risk_table.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1"/><line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7"/><rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="10.5" width="4.5" height="1" rx=".5" fill="#94A3B8"/></svg>
+          <span class="ni-l">Employee Risk</span>
+          <span class="ni-b">287</span>
+        </div>
+      </a>
+      <a href="page3_prediction_tool.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1"/><path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">Prediction</span>
+        </div>
+      </a>
+      <div class="nb">INSIGHTS</div>
+      <a href="interactive_hr_insights.html" style="text-decoration:none">
+        <div class="ni on">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#fff" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">HR Insights</span>
+        </div>
+      </a>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title">Employee Risk Table</div>
+      <div class="tb-r">
+        <button style="font-size:11px;padding:4px 10px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-primary);cursor:pointer">Export CSV</button>
+        <button style="font-size:11px;padding:4px 10px;border-radius:6px;background:#2563EB;color:#fff;border:none;cursor:pointer">Export PDF</button>
+      </div>
+    </div>
+    <div class="filters">
+      <input type="text" placeholder="ค้นหาชื่อพนักงาน..."/>
+      <select><option>ทุก Department</option><option>Sales</option><option>R&D</option><option>HR</option></select>
+      <select><option>ทุก Risk Level</option><option>High Risk</option><option>Medium Risk</option><option>Low Risk</option></select>
+      <select><option>ทุก Job Level</option><option>Level 1</option><option>Level 2</option><option>Level 3</option></select>
+      <select><option>OT: ทั้งหมด</option><option>มี OT</option><option>ไม่มี OT</option></select>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:5%">#</th>
+            <th style="width:18%">ชื่อพนักงาน</th>
+            <th style="width:14%">แผนก</th>
+            <th style="width:13%">Job Role</th>
+            <th style="width:8%">Level</th>
+            <th style="width:8%">OT</th>
+            <th style="width:20%">Risk Score</th>
+            <th style="width:10%">สถานะ</th>
+            <th style="width:4%"></th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body">
+        </tbody>
+      </table>
+    </div>
+    <div class="tfoot">
+      <div class="tfoot-txt">แสดง 1-10 จาก 10,000 คน · High Risk: 287 · Medium: 1,245 · Low: 8,468</div>
+      <div class="page-btns">
+        <button class="pg on">1</button>
+        <button class="pg">2</button>
+        <button class="pg">3</button>
+        <span style="font-size:11px;color:var(--color-text-secondary);padding:3px 4px">...</span>
+        <button class="pg">1000</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const rows = [
+  {id:1,name:"สมหมาย ใจดี",dept:"Sales",role:"Sales Rep",level:1,ot:"ใช่",score:91,risk:"high"},
+  {id:2,name:"วิภา รักเรียน",dept:"R&D",role:"Lab Tech",level:1,ot:"ใช่",score:84,risk:"high"},
+  {id:3,name:"ประเสริฐ มั่นคง",dept:"HR",role:"HR",level:2,ot:"ใช่",score:79,risk:"high"},
+  {id:4,name:"นิดา สุขใจ",dept:"R&D",role:"Research Sci",level:2,ot:"ใช่",score:72,risk:"high"},
+  {id:5,name:"กิตติ วิชาการ",dept:"Sales",role:"Sales Exec",level:1,ot:"ไม่",score:65,risk:"medium"},
+  {id:6,name:"ลลิตา ดีเด่น",dept:"R&D",role:"Lab Tech",level:2,ot:"ใช่",score:61,risk:"medium"},
+  {id:7,name:"อนุชา ทำงานดี",dept:"Sales",role:"Sales Rep",level:1,ot:"ไม่",score:54,risk:"medium"},
+  {id:8,name:"พรทิพย์ สมบูรณ์",dept:"HR",role:"HR",level:3,ot:"ไม่",score:42,risk:"medium"},
+  {id:9,name:"ธนพล เก่งมาก",dept:"R&D",role:"Manager",level:4,ot:"ไม่",score:18,risk:"low"},
+  {id:10,name:"สุรีย์ ยิ้มแย้ม",dept:"Sales",role:"Mfg Dir",level:5,ot:"ไม่",score:11,risk:"low"},
+];
+const riskColor = {high:"#E24B4A",medium:"#EF9F27",low:"#639922"};
+const badgeClass = {high:"bh",medium:"bm",low:"bl"};
+const badgeTxt = {high:"High Risk",medium:"Medium",low:"Low"};
+const body = document.getElementById("tbl-body");
+rows.forEach(r => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td style="color:var(--color-text-secondary)">${r.id}</td>
+    <td style="font-weight:500">${r.name}</td>
+    <td>${r.dept}</td>
+    <td>${r.role}</td>
+    <td style="text-align:center">L${r.level}</td>
+    <td style="text-align:center;color:${r.ot==="ใช่"?"#A32D2D":"var(--color-text-secondary)"}">${r.ot==="ใช่"?"ใช่":"ไม่"}</td>
+    <td>
+      <div class="risk-bar">
+        <div class="risk-track"><div class="risk-fill" style="width:${r.score}%;background:${riskColor[r.risk]}"></div></div>
+        <span style="font-size:11px;font-weight:500;color:${riskColor[r.risk]};min-width:28px">${r.score}%</span>
+      </div>
+    </td>
+    <td><span class="badge ${badgeClass[r.risk]}">${badgeTxt[r.risk]}</span></td>
+    <td><button class="btn-view">ดู</button></td>
+  `;
+  body.appendChild(tr);
+});
+</script>
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Analytics — Attrition Prediction Dashboard</title>
+  <meta name="description" content="HR Analytics Dashboard for Employee Attrition Prediction">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-t">HR Analytics</div>
+      <div class="sb-logo-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <div class="ni on" onclick="switchPage(0)" id="nav-0">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="7" width="3" height="6" rx="1" fill="#94A3B8"/><rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#94A3B8"/><rect x="10" y="1.5" width="3" height="11" rx="1" fill="#94A3B8"/></svg>
+        <span class="ni-l">Overview</span>
+      </div>
+      <div class="ni" onclick="switchPage(1)" id="nav-1">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1"/><line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7"/><rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="10.5" width="4.5" height="1" rx=".5" fill="#94A3B8"/></svg>
+        <span class="ni-l">Employee Risk</span>
+        <span class="ni-b">287</span>
+      </div>
+      <div class="ni" onclick="switchPage(2)" id="nav-2">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1"/><path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">Prediction</span>
+      </div>
+      <div class="nb">INSIGHTS</div>
+      <div class="ni" onclick="switchPage(3)" id="nav-3">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#94A3B8" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">HR Insights</span>
+      </div>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <!-- PAGE 1: Overview Dashboard -->
+    <div class="page active" id="page-0"></div>
+    <!-- PAGE 2: Employee Risk Table -->
+    <div class="page" id="page-1"></div>
+    <!-- PAGE 3: Prediction Tool -->
+    <div class="page" id="page-2"></div>
+    <!-- PAGE 4: HR Insights -->
+    <div class="page" id="page-3"></div>
+  </div>
+</div>
+
+<script src="pages/page1.js"></script>
+<script src="pages/page2.js"></script>
+<script src="pages/page3.js"></script>
+<script src="pages/page4.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

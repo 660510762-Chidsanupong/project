@@ -1,0 +1,238 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{display:flex;height:700px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-tertiary)}
+.sb{width:180px;flex-shrink:0;background:#1E293B;display:flex;flex-direction:column}
+.sb-logo{padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.sb-logo-t{font-size:13px;font-weight:500;color:#fff}
+.sb-logo-s{font-size:11px;color:#475569;margin-top:2px}
+.sb-nav{padding:10px 8px;flex:1}
+.nb{font-size:10px;color:#475569;padding:8px 8px 3px;letter-spacing:.06em}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:6px;margin-bottom:1px}
+.ni.on{background:#2563EB}
+.ni svg{width:14px;height:14px;flex-shrink:0}
+.ni-l{font-size:12px;color:#94A3B8}
+.ni.on .ni-l{color:#fff;font-weight:500}
+.ni-b{margin-left:auto;font-size:10px;background:#EF4444;color:#fff;padding:1px 5px;border-radius:8px}
+.sb-bot{padding:10px 8px;border-top:0.5px solid rgba(255,255,255,0.08)}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--color-background-primary)}
+.topbar{height:48px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+.tb-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.tb-r{margin-left:auto;display:flex;gap:8px}
+.tabs{display:flex;border-bottom:0.5px solid var(--color-border-tertiary);flex-shrink:0;padding:0 16px}
+.tab{font-size:12px;padding:9px 12px;color:var(--color-text-secondary);border-bottom:2px solid transparent;cursor:pointer}
+.tab.on{color:#2563EB;border-bottom-color:#2563EB;font-weight:500}
+.body{flex:1;overflow:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.card-t{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.card-s{font-size:11px;color:var(--color-text-secondary);margin-bottom:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shap-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.shap-rank{font-size:11px;color:var(--color-text-secondary);width:16px;text-align:right;flex-shrink:0}
+.shap-label{font-size:11px;color:var(--color-text-primary);width:130px;flex-shrink:0}
+.shap-track{flex:1;height:12px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden}
+.shap-fill{height:100%;border-radius:3px}
+.shap-val{font-size:11px;font-weight:500;width:38px;text-align:right}
+.rec-card{border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px}
+.rec-title{font-size:12px;font-weight:500;margin-bottom:4px}
+.rec-body{font-size:11px;line-height:1.5}
+.rec-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-top:5px}
+.whatif{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px}
+.whatif-q{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.whatif-row{display:flex;align-items:center;gap:8px}
+.whatif-label{font-size:11px;color:var(--color-text-secondary);width:100px;flex-shrink:0}
+.whatif-bar{flex:1;height:8px;background:var(--color-background-primary);border-radius:4px;overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.whatif-fill{height:100%;border-radius:4px}
+.whatif-val{font-size:11px;font-weight:500;width:32px;text-align:right}
+.sb-nav a{display:block;color:inherit;text-decoration:none}
+</style>
+
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-t">HR Analytics</div>
+      <div class="sb-logo-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <a href="interactive_overview_dashboard.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="7" width="3" height="6" rx="1" fill="#94A3B8"/><rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#94A3B8"/><rect x="10" y="1.5" width="3" height="11" rx="1" fill="#94A3B8"/></svg>
+          <span class="ni-l">Overview</span>
+        </div>
+      </a>
+      <a href="page2_employee_risk_table.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1"/><line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7"/><rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8"/><rect x="3" y="10.5" width="4.5" height="1" rx=".5" fill="#94A3B8"/></svg>
+          <span class="ni-l">Employee Risk</span>
+          <span class="ni-b">287</span>
+        </div>
+      </a>
+      <a href="page3_prediction_tool.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1"/><path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">Prediction</span>
+        </div>
+      </a>
+      <div class="nb">INSIGHTS</div>
+      <a href="interactive_hr_insights.html" style="text-decoration:none">
+        <div class="ni on">
+          <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#fff" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg>
+          <span class="ni-l">HR Insights</span>
+        </div>
+      </a>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1"/><path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round"/></svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title">HR Insights</div>
+      <div class="tb-r">
+        <button style="font-size:11px;padding:4px 10px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-primary);cursor:pointer">Download PDF</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab on">SHAP Summary</div>
+      <div class="tab">Recommendations</div>
+      <div class="tab">What-If Analysis</div>
+      <div class="tab">Executive Summary</div>
+    </div>
+    <div class="body">
+
+      <div class="row2">
+        <div class="card">
+          <div class="card-t">SHAP Summary Plot</div>
+          <div class="card-s">Feature ที่ส่งผลต่อการลาออกมากที่สุด (ทั้งองค์กร)</div>
+          <div id="shap-global"></div>
+          <div style="margin-top:10px;display:flex;align-items:center;gap:8px;font-size:10px;color:var(--color-text-secondary)">
+            <div style="width:10px;height:10px;border-radius:2px;background:#E24B4A;flex-shrink:0"></div>เพิ่มความเสี่ยง
+            <div style="width:10px;height:10px;border-radius:2px;background:#1D9E75;flex-shrink:0;margin-left:8px"></div>ลดความเสี่ยง
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-t">What-If Analysis</div>
+          <div class="card-s">ถ้าปรับนโยบาย → Risk เปลี่ยนเท่าไหร่?</div>
+
+          <div class="whatif">
+            <div class="whatif-q">ถ้าหยุด OT ทั้งองค์กร</div>
+            <div class="whatif-row">
+              <div class="whatif-label">ปัจจุบัน</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:100%;background:#E24B4A"></div></div>
+              <div class="whatif-val" style="color:#A32D2D">14.76%</div>
+            </div>
+            <div class="whatif-row" style="margin-top:5px">
+              <div class="whatif-label">หลังปรับ</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:60%;background:#1D9E75"></div></div>
+              <div class="whatif-val" style="color:#085041">~8.8%</div>
+            </div>
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-top:5px">ลดได้ประมาณ 5.96% หรือ ~596 คน</div>
+          </div>
+
+          <div class="whatif">
+            <div class="whatif-q">ถ้าขึ้นเงินเดือน &lt;3K ให้ถึง 5K</div>
+            <div class="whatif-row">
+              <div class="whatif-label">ปัจจุบัน</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:100%;background:#E24B4A"></div></div>
+              <div class="whatif-val" style="color:#A32D2D">51.9%</div>
+            </div>
+            <div class="whatif-row" style="margin-top:5px">
+              <div class="whatif-label">หลังปรับ</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:29%;background:#EF9F27"></div></div>
+              <div class="whatif-val" style="color:#412402">~15%</div>
+            </div>
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-top:5px">กลุ่ม 133 คน ลด Risk ลงอย่างมีนัยสำคัญ</div>
+          </div>
+
+          <div class="whatif">
+            <div class="whatif-q">ถ้าเพิ่ม Training 5 ครั้ง/ปี</div>
+            <div class="whatif-row">
+              <div class="whatif-label">ปัจจุบัน</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:100%;background:#E24B4A"></div></div>
+              <div class="whatif-val" style="color:#A32D2D">15.4%</div>
+            </div>
+            <div class="whatif-row" style="margin-top:5px">
+              <div class="whatif-label">หลังปรับ</div>
+              <div class="whatif-bar"><div class="whatif-fill" style="width:84%;background:#EF9F27"></div></div>
+              <div class="whatif-val" style="color:#412402">~12.9%</div>
+            </div>
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-top:5px">ลดได้ ~2.5% ผ่าน Engagement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-t">HR Recommendations</div>
+        <div class="card-s">ข้อเสนอแนะที่มี Data Evidence รองรับ — เรียงตามความเร่งด่วน</div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+          <div class="rec-card" style="background:#FEF2F2;border:0.5px solid #FECACA">
+            <div class="rec-title" style="color:#991B1B">ลด OverTime ทันที</div>
+            <div class="rec-body" style="color:#7F1D1D">OT เพิ่ม Risk 2 เท่า มีพนักงานทำ OT 1,500 คน ควรจำกัด OT ไม่เกิน 2 ชั่วโมง/วัน หรือให้ค่าตอบแทนเพิ่ม</div>
+            <div class="rec-tag" style="background:#FECACA;color:#991B1B">เร่งด่วน · 1,500 คน</div>
+          </div>
+          <div class="rec-card" style="background:#FFF7ED;border:0.5px solid #FED7AA">
+            <div class="rec-title" style="color:#92400E">ปรับเงินเดือนกลุ่มเสี่ยง</div>
+            <div class="rec-body" style="color:#78350F">133 คนที่มี OT + เงินเดือน &lt;3K เสี่ยง 51.9% ควรทบทวน Salary Benchmark และปรับให้สอดคล้อง Market</div>
+            <div class="rec-tag" style="background:#FED7AA;color:#92400E">เร่งด่วน · 133 คน</div>
+          </div>
+          <div class="rec-card" style="background:#FFFBEB;border:0.5px solid #FDE68A">
+            <div class="rec-title" style="color:#92400E">Career Path ชัดเจน</div>
+            <div class="rec-body" style="color:#78350F">พนักงานไม่โปรโมท 6-7 ปี เสี่ยง 19-20% ควรมี IDP (Individual Dev Plan) และทบทวนโปรโมททุก 2 ปี</div>
+            <div class="rec-tag" style="background:#FDE68A;color:#92400E">กลาง · ทุก Dept</div>
+          </div>
+          <div class="rec-card" style="background:#F0FDF4;border:0.5px solid #BBF7D0">
+            <div class="rec-title" style="color:#166534">เพิ่ม Training</div>
+            <div class="rec-body" style="color:#14532D">Training 5 ครั้ง/ปี ลด Attrition ได้จริง ควรวางแผน Training Calendar ให้ครบทุกคน โดยเฉพาะกลุ่ม Level 1-2</div>
+            <div class="rec-tag" style="background:#BBF7D0;color:#166534">ระยะยาว · ทุกคน</div>
+          </div>
+          <div class="rec-card" style="background:#EFF6FF;border:0.5px solid #BFDBFE">
+            <div class="rec-title" style="color:#1E40AF">Stock Option</div>
+            <div class="rec-body" style="color:#1e3a8a">StockOption=0 เสี่ยงสูงกว่า เพิ่ม Stock Option ให้กลุ่ม Level 1-2 ที่มีผลงานดี เพื่อสร้าง Golden Handcuffs</div>
+            <div class="rec-tag" style="background:#BFDBFE;color:#1E40AF">ระยะกลาง · Level 1-2</div>
+          </div>
+          <div class="rec-card" style="background:#F5F3FF;border:0.5px solid #DDD6FE">
+            <div class="rec-title" style="color:#5B21B6">Job Rotation</div>
+            <div class="rec-body" style="color:#4C1D95">อยู่ตำแหน่งเดิม 5+ ปีเริ่มเบื่อ ควรมีนโยบาย Job Rotation ทุก 3-5 ปีเพื่อลดความอิ่มตัว</div>
+            <div class="rec-tag" style="background:#DDD6FE;color:#5B21B6">ระยะยาว · ทุก Dept</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const globalShap = [
+  {label:"OverTime",            pct:88, color:"#E24B4A"},
+  {label:"MonthlyIncome",       pct:72, color:"#E24B4A"},
+  {label:"Age",                 pct:58, color:"#E24B4A"},
+  {label:"YearsAtCompany",      pct:50, color:"#E24B4A"},
+  {label:"JobLevel",            pct:44, color:"#E24B4A"},
+  {label:"MaritalStatus",       pct:36, color:"#E24B4A"},
+  {label:"BusinessTravel",      pct:30, color:"#EF9F27"},
+  {label:"JobSatisfaction",     pct:24, color:"#EF9F27"},
+  {label:"StockOptionLevel",    pct:40, color:"#1D9E75"},
+  {label:"TrainingTimesLastYear",pct:28, color:"#1D9E75"},
+];
+const container = document.getElementById("shap-global");
+globalShap.forEach((d,i) => {
+  const row = document.createElement("div");
+  row.className = "shap-row";
+  row.innerHTML = `
+    <div class="shap-rank" style="font-size:10px;color:var(--color-text-secondary)">${i+1}</div>
+    <div class="shap-label" style="font-size:11px">${d.label}</div>
+    <div class="shap-track"><div class="shap-fill" style="width:${d.pct}%;background:${d.color}"></div></div>
+    <div class="shap-val" style="color:${d.color}">${d.pct}%</div>
+  `;
+  container.appendChild(row);
+});
+</script>
+
+

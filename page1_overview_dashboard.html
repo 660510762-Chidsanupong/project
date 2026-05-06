@@ -1,0 +1,656 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+  }
+
+  .app {
+    display: flex;
+    height: 700px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    background: var(--color-background-tertiary)
+  }
+
+  .sb {
+    width: 180px;
+    flex-shrink: 0;
+    background: #1E293B;
+    display: flex;
+    flex-direction: column
+  }
+
+  .sb-logo {
+    padding: 14px 16px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.08)
+  }
+
+  .sb-logo-t {
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff
+  }
+
+  .sb-logo-s {
+    font-size: 11px;
+    color: #475569;
+    margin-top: 2px
+  }
+
+  .sb-nav {
+    padding: 10px 8px;
+    flex: 1
+  }
+
+  .nb {
+    font-size: 10px;
+    color: #475569;
+    padding: 8px 8px 3px;
+    letter-spacing: .06em
+  }
+
+  .ni {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    margin-bottom: 1px;
+    cursor: pointer;
+    transition: background .15s
+  }
+
+  .ni:hover {
+    background: rgba(255, 255, 255, 0.06)
+  }
+
+  .ni.on {
+    background: #2563EB
+  }
+
+  .ni svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0
+  }
+
+  .ni-l {
+    font-size: 12px;
+    color: #94A3B8
+  }
+
+  .ni.on .ni-l {
+    color: #fff;
+    font-weight: 500
+  }
+
+  .ni-b {
+    margin-left: auto;
+    font-size: 10px;
+    background: #EF4444;
+    color: #fff;
+    padding: 1px 5px;
+    border-radius: 8px
+  }
+
+  .sb-bot {
+    padding: 10px 8px;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.08)
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--color-background-primary)
+  }
+
+  .topbar {
+    height: 48px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+    flex-shrink: 0
+  }
+
+  .tb-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary)
+  }
+
+  .tb-badge {
+    font-size: 10px;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    padding: 2px 7px;
+    border-radius: 10px
+  }
+
+  .tb-r {
+    margin-left: auto;
+    display: flex;
+    gap: 8px
+  }
+
+  .tabs {
+    display: flex;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    flex-shrink: 0;
+    padding: 0 16px
+  }
+
+  .tab {
+    font-size: 12px;
+    padding: 9px 12px;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid transparent;
+    cursor: pointer
+  }
+
+  .tab.on {
+    color: #2563EB;
+    border-bottom-color: #2563EB;
+    font-weight: 500
+  }
+
+  .body {
+    flex: 1;
+    overflow: auto;
+    padding: 14px 16px
+  }
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px
+  }
+
+  .kpi {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 12px
+  }
+
+  .kpi-l {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px
+  }
+
+  .kpi-v {
+    font-size: 20px;
+    font-weight: 500
+  }
+
+  .kpi-s {
+    font-size: 10px;
+    margin-top: 2px;
+    color: var(--color-text-secondary)
+  }
+
+  .danger {
+    color: #A32D2D
+  }
+
+  .warn {
+    color: #633806
+  }
+
+  .safe {
+    color: #27500A
+  }
+
+  .info {
+    color: #0C447C
+  }
+
+  .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px
+  }
+
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 12px
+  }
+
+  .card-t {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 10px
+  }
+
+  .bar-r {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px
+  }
+
+  .bar-lb {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    width: 88px;
+    flex-shrink: 0;
+    text-align: right
+  }
+
+  .bar-tr {
+    flex: 1;
+    height: 7px;
+    background: var(--color-background-secondary);
+    border-radius: 4px;
+    overflow: hidden
+  }
+
+  .bar-f {
+    height: 100%;
+    border-radius: 4px
+  }
+
+  .bar-vl {
+    font-size: 11px;
+    width: 36px;
+    text-align: right
+  }
+
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    table-layout: fixed
+  }
+
+  .tbl th {
+    text-align: left;
+    padding: 5px 8px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border-bottom: 0.5px solid var(--color-border-tertiary)
+  }
+
+  .tbl td {
+    padding: 6px 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 500
+  }
+
+  .bh {
+    background: #FCEBEB;
+    color: #791F1F
+  }
+
+  .bm {
+    background: #FAEEDA;
+    color: #412402
+  }
+
+  .bl {
+    background: #EAF3DE;
+    color: #173404
+  }
+
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center
+  }
+
+  .filter-row select {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary)
+  }
+
+  .filter-row label {
+    font-size: 11px;
+    color: var(--color-text-secondary)
+  }
+
+  .legend {
+    display: flex;
+    gap: 12px;
+    padding: 10px 16px;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-secondary);
+    flex-shrink: 0
+  }
+
+  .leg-i {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--color-text-secondary)
+  }
+
+  .leg-d {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%
+  }
+
+  .sb-nav a {
+    display: block;
+    color: inherit;
+    text-decoration: none
+  }
+</style>
+<div class="app">
+  <div class="sb">
+    <div class="sb-logo">
+      <div class="sb-logo-t">HR Analytics</div>
+      <div class="sb-logo-s">Attrition Prediction</div>
+    </div>
+    <div class="sb-nav">
+      <div class="nb">MAIN</div>
+      <a href="interactive_overview_dashboard.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="7" width="3" height="6" rx="1" fill="#94A3B8" />
+            <rect x="5.5" y="4.5" width="3" height="8.5" rx="1" fill="#94A3B8" />
+            <rect x="10" y="1.5" width="3" height="11" rx="1" fill="#94A3B8" />
+          </svg>
+          <span class="ni-l">Overview</span>
+        </div>
+      </a>
+      <a href="page2_employee_risk_table.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="1" width="12" height="12" rx="2" stroke="#94A3B8" stroke-width="1" />
+            <line x1="1" y1="4.5" x2="13" y2="4.5" stroke="#94A3B8" stroke-width=".7" />
+            <rect x="3" y="6.5" width="3" height="1" rx=".5" fill="#94A3B8" />
+            <rect x="3" y="8.5" width="6" height="1" rx=".5" fill="#94A3B8" />
+            <rect x="3" y="10.5" width="4.5" height="1" rx=".5" fill="#94A3B8" />
+          </svg>
+          <span class="ni-l">Employee Risk</span>
+          <span class="ni-b">287</span>
+        </div>
+      </a>
+      <a href="page3_prediction_tool.html" style="text-decoration:none">
+        <div class="ni">
+          <svg viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="5.5" stroke="#94A3B8" stroke-width="1" />
+            <path d="M7 4.5V7.5L9 9" stroke="#94A3B8" stroke-width="1" stroke-linecap="round" />
+          </svg>
+          <span class="ni-l">Prediction</span>
+        </div>
+      </a>
+      <div class="nb">INSIGHTS</div>
+      <a href="interactive_hr_insights.html" style="text-decoration:none">
+        <div class="ni on">
+          <svg viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="5" r="2.5" stroke="#fff" stroke-width="1" />
+            <path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#fff" stroke-width="1" stroke-linecap="round" />
+          </svg>
+          <span class="ni-l">HR Insights</span>
+        </div>
+      </a>
+    </div>
+    <div class="sb-bot">
+      <div class="ni">
+        <svg viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="5" r="2.5" stroke="#64748B" stroke-width="1" />
+          <path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="#64748B" stroke-width="1" stroke-linecap="round" />
+        </svg>
+        <span class="ni-l">สมชาย (HR)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="tb-title">Overview Dashboard</div>
+      <div class="tb-r">
+        <select
+          style="font-size:11px;padding:4px 8px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)">
+          <option>ทุก Department</option>
+          <option>Sales</option>
+          <option>R&D</option>
+          <option>HR</option>
+        </select>
+        <button
+          style="font-size:11px;padding:4px 10px;border-radius:6px;background:#2563EB;color:#fff;border:none;cursor:pointer">Export
+          CSV</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab on">ภาพรวม</div>
+      <div class="tab">กลุ่มเสี่ยง</div>
+      <div class="tab">แนวโน้ม</div>
+    </div>
+    <div class="body">
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-l">Attrition Rate</div>
+          <div class="kpi-v danger">14.76%</div>
+          <div class="kpi-s danger">↑ 1.2% จากเดือนก่อน</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-l">High Risk</div>
+          <div class="kpi-v warn">287 คน</div>
+          <div class="kpi-s">Risk Score &gt; 70%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-l">ลาออกแล้ว</div>
+          <div class="kpi-v" style="color:var(--color-text-primary)">1,476 คน</div>
+          <div class="kpi-s">จากทั้งหมด 10,000</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-l">OT + เงินเดือน &lt;3K</div>
+          <div class="kpi-v danger">133 คน</div>
+          <div class="kpi-s danger">เสี่ยงสูงสุด 51.9%</div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="card">
+          <div class="card-t">Attrition Rate แยก Job Role</div>
+          <div class="bar-r">
+            <div class="bar-lb">Sales Rep</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:79%;background:#E24B4A"></div>
+            </div>
+            <div class="bar-vl danger">23.5%</div>
+          </div>
+          <div class="bar-r">
+            <div class="bar-lb">HR</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:68%;background:#E24B4A"></div>
+            </div>
+            <div class="bar-vl danger">20.4%</div>
+          </div>
+          <div class="bar-r">
+            <div class="bar-lb">Lab Tech</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:63%;background:#EF9F27"></div>
+            </div>
+            <div class="bar-vl warn">18.8%</div>
+          </div>
+          <div class="bar-r">
+            <div class="bar-lb">Research Sci</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:56%;background:#EF9F27"></div>
+            </div>
+            <div class="bar-vl warn">16.8%</div>
+          </div>
+          <div class="bar-r">
+            <div class="bar-lb">Mfg Director</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:37%;background:#639922"></div>
+            </div>
+            <div class="bar-vl safe">11.1%</div>
+          </div>
+          <div class="bar-r">
+            <div class="bar-lb">Manager</div>
+            <div class="bar-tr">
+              <div class="bar-f" style="width:40%;background:#639922"></div>
+            </div>
+            <div class="bar-vl safe">12.1%</div>
+          </div>
+          <div
+            style="margin-top:8px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary);font-size:10px;color:var(--color-text-secondary)">
+            เส้น baseline 14.76%</div>
+        </div>
+
+        <div class="card">
+          <div class="card-t">Top 5 พนักงานเสี่ยงสูง</div>
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:30%">ชื่อ</th>
+                <th style="width:22%">แผนก</th>
+                <th style="width:20%">Risk</th>
+                <th style="width:28%">สถานะ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>พนักงาน A</td>
+                <td>Sales</td>
+                <td class="danger" style="font-weight:500">91%</td>
+                <td><span class="badge bh">High Risk</span></td>
+              </tr>
+              <tr>
+                <td>พนักงาน B</td>
+                <td>R&D</td>
+                <td class="danger" style="font-weight:500">84%</td>
+                <td><span class="badge bh">High Risk</span></td>
+              </tr>
+              <tr>
+                <td>พนักงาน C</td>
+                <td>HR</td>
+                <td class="danger" style="font-weight:500">79%</td>
+                <td><span class="badge bh">High Risk</span></td>
+              </tr>
+              <tr>
+                <td>พนักงาน D</td>
+                <td>R&D</td>
+                <td class="warn" style="font-weight:500">65%</td>
+                <td><span class="badge bm">Medium</span></td>
+              </tr>
+              <tr>
+                <td>พนักงาน E</td>
+                <td>Sales</td>
+                <td class="warn" style="font-weight:500">61%</td>
+                <td><span class="badge bm">Medium</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <button onclick="sendPrompt('ช่วยดู Employee Risk Table ทั้งหมดให้หน่อย ↗')"
+            style="margin-top:8px;font-size:11px;padding:5px 10px;border-radius:6px;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);cursor:pointer;width:100%">ดูทั้งหมด
+            →</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-t">Attrition Rate แยก Department × OverTime</div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px">
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:6px">Sales</div>
+            <div style="display:flex;gap:6px;justify-content:center">
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#EAF3DE;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:40%;background:#639922;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">ไม่ OT</div>
+                <div style="font-size:10px;font-weight:500;color:#27500A">12%</div>
+              </div>
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#FCEBEB;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:80%;background:#E24B4A;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">OT</div>
+                <div style="font-size:10px;font-weight:500;color:#A32D2D">24%</div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:6px">R&D</div>
+            <div style="display:flex;gap:6px;justify-content:center">
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#EAF3DE;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:35%;background:#639922;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">ไม่ OT</div>
+                <div style="font-size:10px;font-weight:500;color:#27500A">10.6%</div>
+              </div>
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#FCEBEB;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:74%;background:#E24B4A;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">OT</div>
+                <div style="font-size:10px;font-weight:500;color:#A32D2D">22.2%</div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:6px">HR</div>
+            <div style="display:flex;gap:6px;justify-content:center">
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#EAF3DE;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:42%;background:#639922;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">ไม่ OT</div>
+                <div style="font-size:10px;font-weight:500;color:#27500A">12.7%</div>
+              </div>
+              <div style="text-align:center">
+                <div
+                  style="width:32px;height:48px;background:#FCEBEB;border:0.5px solid var(--color-border-tertiary);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden">
+                  <div style="width:100%;height:74%;background:#E24B4A;border-radius:0"></div>
+                </div>
+                <div style="font-size:9px;color:var(--color-text-secondary);margin-top:3px">OT</div>
+                <div style="font-size:10px;font-weight:500;color:#A32D2D">22.2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="leg-i">
+        <div class="leg-d" style="background:#E24B4A"></div>High Risk (&gt;70%)
+      </div>
+      <div class="leg-i">
+        <div class="leg-d" style="background:#EF9F27"></div>Medium (40-70%)
+      </div>
+      <div class="leg-i">
+        <div class="leg-d" style="background:#639922"></div>Low (&lt;40%)
+      </div>
+      <div style="margin-left:auto;font-size:10px;color:var(--color-text-tertiary)">อัปเดต: วันนี้ 09:00</div>
+    </div>
+  </div>
+</div>
