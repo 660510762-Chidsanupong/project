@@ -144,32 +144,132 @@ function renderPage1(container) {
     </div>`).join('')}`;
   }
 
+  function tab2() {
+    return `<div style="padding:1rem 0;">
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:1.5rem;">
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">พนักงานทั้งหมด</div>
+        <div style="font-size:28px;font-weight:500;color:var(--color-text-primary);">28</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);">คน</div>
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">รวม records เข้างาน</div>
+        <div style="font-size:28px;font-weight:500;color:var(--color-text-primary);">6,634</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);">วัน</div>
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">รวมการลา</div>
+        <div style="font-size:28px;font-weight:500;color:var(--color-text-primary);">127</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);">ครั้ง</div>
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+        <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">รวม OT approved</div>
+        <div style="font-size:28px;font-weight:500;color:var(--color-text-primary);">26</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);">ครั้ง</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;">
+      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;">
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">พนักงานแยกตามแผนก</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:12px;color:var(--color-text-secondary);">
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#534AB7;"></span>Development (11)</span>
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>Management (8)</span>
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#888780;"></span>Outsource (8)</span>
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>Executive (1)</span>
+        </div>
+        <div style="position:relative;width:100%;height:200px;"><canvas id="eda-deptChart"></canvas></div>
+      </div>
+      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;">
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">พนักงานแยกตามตำแหน่ง</div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="eda-jobChart"></canvas></div>
+      </div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1.5rem;">
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">แนวโน้มการเข้างานรายเดือน (2023–2026)</div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="eda-attendChart"></canvas></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;">
+      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;">
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">Top 5 ลาบ่อยสุด (ครั้ง)</div>
+        <div style="position:relative;width:100%;height:200px;"><canvas id="eda-leaveChart"></canvas></div>
+      </div>
+      <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;">
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">OT approved รายคน</div>
+        <div style="position:relative;width:100%;height:200px;"><canvas id="eda-otChart"></canvas></div>
+      </div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1.5rem;">
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">เฉลี่ยชั่วโมงทำงาน/วัน</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary);">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A;"></span>สูง ≥8.0 ชม.</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#BA7517;"></span>ปานกลาง 7.7–7.9</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>ปกติ &lt;7.7</span>
+      </div>
+      <div style="position:relative;width:100%;height:300px;"><canvas id="eda-hoursChart"></canvas></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;">
+      <div style="font-size:14px;font-weight:500;color:var(--color-text-secondary);margin-bottom:12px;">ความเสี่ยงลาออก (Retention Risk Score)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary);">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#E24B4A;"></span>เสี่ยงสูง ≥80</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#BA7517;"></span>เสี่ยงปานกลาง 60–79</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>เสี่ยงต่ำ &lt;60</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px;"><canvas id="eda-riskChart"></canvas></div>
+    </div>
+    </div>`;
+  }
+
+  function initPage1Charts() {
+    var isDk = window.matchMedia('(prefers-color-scheme:dark)').matches || document.documentElement.getAttribute('data-theme') !== 'light';
+    var tc = isDk ? '#ccc' : '#555';
+    var gc = isDk ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+
+    new Chart(document.getElementById('eda-deptChart'),{type:'doughnut',data:{labels:['Development (11)','Management (8)','Outsource (8)','Executive (1)'],datasets:[{data:[11,8,8,1],backgroundColor:['#534AB7','#1D9E75','#888780','#D85A30'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+
+    new Chart(document.getElementById('eda-jobChart'),{type:'bar',data:{labels:['System Analyst','Senior Prog.','Intern Prog.','Junior Prog.','Tester','Others'],datasets:[{data:[4,3,3,2,2,4],backgroundColor:'#534AB7',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:gc},ticks:{color:tc}},y:{grid:{display:false},ticks:{color:tc,font:{size:11}}}}}});
+
+    var months=['2023-05','2023-08','2023-11','2024-02','2024-05','2024-08','2024-11','2025-02','2025-05','2025-08','2025-11','2026-02','2026-05'];
+    var attendData=[145,158,157,132,139,126,138,139,219,246,260,293,83];
+    new Chart(document.getElementById('eda-attendChart'),{type:'line',data:{labels:months,datasets:[{label:'records',data:attendData,borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,0.1)',fill:true,tension:0.4,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gc},ticks:{color:tc,maxRotation:45}},y:{grid:{color:gc},ticks:{color:tc}}}}});
+
+    new Chart(document.getElementById('eda-leaveChart'),{type:'bar',data:{labels:['ID-2','ID-10','ID-11','ID-1','ID-8'],datasets:[{data:[18,16,15,12,11],backgroundColor:['#E24B4A','#E24B4A','#E24B4A','#BA7517','#BA7517'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:tc}},y:{grid:{color:gc},ticks:{color:tc}}}}});
+
+    new Chart(document.getElementById('eda-otChart'),{type:'bar',data:{labels:['ID-22','ID-14','ID-25','ID-8','ID-26'],datasets:[{data:[9,6,6,3,2],backgroundColor:['#D85A30','#D85A30','#D85A30','#BA7517','#BA7517'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:tc}},y:{grid:{color:gc},ticks:{color:tc}}}}});
+
+    var empIDs=['ID-18','ID-19','ID-2','ID-1','ID-16','ID-10','ID-12','ID-17','ID-11','ID-8','ID-22','ID-6','ID-14','ID-28'];
+    var empHours=[7.88,7.33,7.75,7.60,7.40,6.94,7.61,8.26,8.18,7.55,7.88,6.69,7.65,8.07];
+    var hc=empHours.map(function(h){return h>=8.0?'#E24B4A':h>=7.7?'#BA7517':'#1D9E75';});
+    new Chart(document.getElementById('eda-hoursChart'),{type:'bar',data:{labels:empIDs,datasets:[{data:empHours,backgroundColor:hc,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:tc,font:{size:11},maxRotation:45,autoSkip:false}},y:{grid:{color:gc},ticks:{color:tc},min:6,max:9,title:{display:true,text:'ชม./วัน',color:tc}}}}});
+
+    var riskIDs=['ID-11','ID-8','ID-22','ID-14','ID-2','ID-1','ID-10'];
+    var riskScores=[90,85,80,65,60,50,45];
+    var rc=riskScores.map(function(s){return s>=80?'#E24B4A':s>=60?'#BA7517':'#1D9E75';});
+    new Chart(document.getElementById('eda-riskChart'),{type:'bar',data:{labels:riskIDs,datasets:[{label:'Risk Score',data:riskScores,backgroundColor:rc,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:tc}},y:{grid:{color:gc},ticks:{color:tc},min:0,max:100,title:{display:true,text:'คะแนน (0-100)',color:tc}}}}});
+  }
+
   function render() {
-    const body = container.querySelector('.body');
-    if (currentTab === 0) body.innerHTML = tab0();
-    else body.innerHTML = tab1();
+    var body = container.querySelector('.body');
+    var dsInfo = container.querySelector('#p1-dataset-info');
+    if (currentTab === 0) { 
+      body.innerHTML = tab2(); 
+      initPage1Charts(); 
+      if(dsInfo) dsInfo.textContent = 'ข้อมูลจากระบบ HRM';
+    }
+    else if (currentTab === 1) {
+      body.innerHTML = tab0();
+      if(dsInfo) dsInfo.textContent = 'วิเคราะห์จากฐานข้อมูลพยากรณ์ 10,000 รายการ';
+    }
+    else if (currentTab === 2) {
+      body.innerHTML = tab1();
+      if(dsInfo) dsInfo.textContent = 'วิเคราะห์จากฐานข้อมูลพยากรณ์ 10,000 รายการ';
+    }
   }
 
   container.innerHTML = `
     <div class="topbar">
       <div class="tb-title">Overview Dashboard</div>
       <div class="tb-r">
-        <button class="theme-toggle" id="theme-toggle" title="สลับธีม Light/Dark">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </button>
+        ${themeToggleHTML()}
         <select class="sel" id="dept-filter">
           <option value="all">ทุก Department</option>
           <option value="sales">Sales</option>
@@ -183,18 +283,19 @@ function renderPage1(container) {
       </div>
     </div>
     <div class="tabs">
-      <div class="tab on" id="p1-tab-0">ภาพรวม</div>
-      <div class="tab" id="p1-tab-1">กลุ่มเสี่ยง</div>
+      <div class="tab on" id="p1-tab-0">Snapshot</div>
+      <div class="tab" id="p1-tab-1">Global Trends</div>
+      <div class="tab" id="p1-tab-2">Risk Archetypes</div>
     </div>
     <div class="body"></div>
     <div class="legend">
       <div class="leg-i"><div class="leg-d" style="background:#A32D2D"></div>High Risk (&gt;70%)</div>
       <div class="leg-i"><div class="leg-d" style="background:#EF9F27"></div>Medium (40-70%)</div>
       <div class="leg-i"><div class="leg-d" style="background:#27500A"></div>Low (&lt;40%)</div>
-      <div style="margin-left:auto;font-size:13px;color:var(--color-text-tertiary)">Dataset: 10,000 พนักงาน</div>
+      <div id="p1-dataset-info" style="margin-left:auto;font-size:13px;color:var(--color-text-tertiary)">Dataset: 10,000 พนักงาน</div>
     </div>`;
 
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     container.querySelector(`#p1-tab-${i}`).onclick = () => {
       currentTab = i;
       container.querySelectorAll('.tab').forEach((t, idx) => t.classList.toggle('on', idx === i));
@@ -202,10 +303,7 @@ function renderPage1(container) {
     };
   }
 
-  // Theme toggle button
-  container.querySelector('#theme-toggle').onclick = () => {
-    if (typeof toggleTheme === 'function') toggleTheme();
-  };
+
 
   // Download PDF Report - Executive Summary
   container.querySelector('#btn-pdf').onclick = () => {
@@ -213,7 +311,7 @@ function renderPage1(container) {
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>HR Analytics — Executive Summary Report</title>
+<title>PredictaHR — Executive Summary Report</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
@@ -247,7 +345,7 @@ function renderPage1(container) {
 </style>
 </head>
 <body>
-<h1>Executive Summary — HR Analytics</h1>
+<h1>Executive Summary — PredictaHR</h1>
 <div class="subtitle">Employee Attrition Prediction Report — Dataset 10,000 พนักงาน</div>
 
 <div class="section">
@@ -294,7 +392,7 @@ function renderPage1(container) {
 </div>
 
 <div class="footer">
-  HR Analytics — Attrition Prediction System &bull; Generated ${new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'})}
+  PredictaHR — Attrition Prediction System &bull; Generated ${new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'})}
 </div>
 </body>
 </html>`;

@@ -102,6 +102,9 @@ function renderPage4(container) {
   container.innerHTML = `
     <div class="topbar">
       <div class="tb-title">HR Insights</div>
+      <div class="tb-r">
+        ${themeToggleHTML()}
+      </div>
     </div>
     <div class="tabs">
       <div class="tab on" id="p4-tab-0">SHAP Summary</div>

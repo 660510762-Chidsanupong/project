@@ -1,0 +1,5 @@
+﻿id,company_id,parent_id,manager_id,complete_name,name,active
+10,1,13,6,Executive / Management,Management,t
+12,1,13,3,Executive / Outsource,Outsource,t
+9,1,13,1,Executive / Development,Development,t
+13,1,,3,Executive,Executive / Management,t

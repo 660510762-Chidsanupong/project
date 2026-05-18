@@ -20,6 +20,7 @@ function renderPage2(container) {
     <div class="topbar">
       <div class="tb-title">Employee Risk Table</div>
       <div class="tb-r">
+        ${themeToggleHTML()}
         <button class="btn-e" style="background:transparent;border:1px solid var(--color-border-primary);color:var(--color-text-primary)">Export CSV</button>
         <button class="btn-e">Export PDF</button>
       </div>

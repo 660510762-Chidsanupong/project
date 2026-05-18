@@ -219,8 +219,8 @@ html, body {
 .body::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
 
 /* Page containers */
-.page { display: none; height: 100%; flex-direction: column; overflow: hidden; }
-.page.active { display: flex; }
+.page { display: none !important; height: 100%; flex-direction: column; overflow: hidden; }
+.page.active { display: flex !important; }
 
 /* ===== SHARED COMPONENTS ===== */
 .kpis { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-bottom: 14px; }

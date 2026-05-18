@@ -16,7 +16,10 @@ function renderPage3(container) {
   container.innerHTML = `
     <div class="topbar">
       <div class="tb-title">Prediction Tool</div>
-      <div style="font-size:14px;color:var(--color-text-secondary)">กรอกข้อมูลพนักงาน → ได้ Risk Score ทันที</div>
+      <div style="font-size:14px;color:var(--color-text-secondary);flex:1">กรอกข้อมูลพนักงาน → ได้ Risk Score ทันที</div>
+      <div class="tb-r">
+        ${themeToggleHTML()}
+      </div>
     </div>
     <div class="body-grid">
       <div class="card" style="overflow:auto">

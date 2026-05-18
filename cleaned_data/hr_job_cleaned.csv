@@ -1,0 +1,13 @@
+﻿id,department_id,company_id,name,no_of_employee,active
+10,,1,Tester,2,t
+15,,1,Managing Director,1,t
+12,,1,Intern Programmer,3,t
+19,,1,Programmer Hrbrid,1,t
+17,,1,Business Analyst,1,t
+8,,1,Senior Programmer,3,t
+14,,1,Programmer,2,t
+18,,1,In Trun Business Analyst,1,t
+9,,1,System Analyst,4,t
+16,,1,Outsource,8,t
+11,,1,Junoir Programmer,2,t
+13,,1,Mobile Developer,0,t
